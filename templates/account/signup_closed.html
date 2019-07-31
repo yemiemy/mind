@@ -1,0 +1,39 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+
+{% block title %} | {% trans "Sign Up Closed" %}{% endblock %}
+
+{% block content %}
+<section id="showcase-inner" class="py-5 text-white">
+    <div class="container">
+    <div class="row text-center">
+        <div class="col-md-12">
+        <h1 class="display-4">{% trans "Sign Up Closed" %}</h1>
+        </div>
+    </div>
+    </div>
+  </section>
+  
+  <section id="create" class="bg-light py-5">
+         <div class="container">
+           <div class="row">
+             <div class="col-md-6 mx-auto">
+               <div class="card">
+                 <div class="card-header bg-primary text-white">
+                   <h4>
+                     <i class="fas fa-edit"></i>  {% trans "Sign Up Closed" %}</h4>
+                 </div>
+                 <div class="card-body">
+                     <!-- ALERTS -->
+                     {% include 'partials/_alerts.html' %}
+                     
+                     <p>{% trans "We are sorry, but the sign up is currently closed." %}</p>
+  
+                 </div>
+               </div>
+             </div>
+           </div>
+        </div>
+    </section>
+{% endblock %}

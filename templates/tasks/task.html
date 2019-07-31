@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="jumbotron mt-5">
+
+            <p class="display-4">PENDING TASKS</p>
+                <p>Title: {{task.title}}</p>
+                <p>Problem Statement: {{task.instructions}}</p>
+                <p>Max Points: {{task.points}}</p>
+                <p>Due Date: {{task.deadline}}</p>
+    
+                <button type="button" class="btn btn-primary">VIEW TASK</button>
+
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                SUBMIT ISSUE
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="{% url 'task' task.id %}" method="POST">
+                        {% csrf_token %}
+                    <div class="modal-body">
+                            <div class="form-group">
+                                <label for="title">Title</label>
+                                <input name="title" type="text" class="form-control" id="title" placeholder="Issue Title">
+                            </div>
+                            <div class="form-group">
+                            <label for="message">Your Message:</label>
+                            <textarea name="message" class="form-control" id="message" rows="3"></textarea>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Send</button>
+                    </div>
+                    </form>
+                    </div>
+                </div>
+                </div>
+                
+                {% if user.userprofile.is_team_leader %}
+                    <form class="form-inline" action="{% url 'task' task.id %}" method="GET">
+                        {% csrf_token %}
+                        <input class="btn btn-primary form-control mr-sm-2" type="submit" value="SUBMIT TASK">
+                    </form>
+                {% endif %}
+        </div>
+    </div>
+{% endblock content %}
+    
