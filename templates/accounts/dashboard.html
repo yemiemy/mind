@@ -11,10 +11,12 @@
             <div class="navbar-nav">
             <a class="nav-item nav-link active" href="{% url 'create_project' %}">Create Project <span class="sr-only">(current)</span></a>
             <a class="nav-item nav-link" href="{% url 'create_team' %}">Create Team</a>
-            <a class="nav-item nav-link" href="{% url 'assign_project' %}">Assign Project</a>
+            <a class="nav-item nav-link" href="{% url 'projects' %}">ProjectS</a>
             <a class="nav-item nav-link" href="{% url 'leaderboard' %}">Leaderboard</a>
             </div>
         </div>
         </nav>
+
+        {% include 'partials/alerts.html' %}
 {% endblock content %}
     

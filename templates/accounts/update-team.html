@@ -3,11 +3,11 @@
 
 {% block content %}
       <div class="container container-fluid">
-        <h2 class="mt-4 page-title">CREATE NEW TEAM</h2>
-        <form action="{% url 'create_team' %}" method="POST">
+        <h2 class="mt-4 page-title">UPDATE TEAM</h2>
+        <form action="{% url 'update_team' team.id %}" method="POST">
           {% csrf_token %}
             <h5>Team Name</h5>
-            <input type="text" class="form-control field" name="name">
+            <input type="text" value="{{team.name}}" class="form-control field" name="name">
             <br>
             <h5>Select members of team</h5>
             <table class="table">
@@ -25,14 +25,22 @@
                     <tr>
                     <td>{{user.first_name}} {{user.last_name}}</td>
                     <td>{{user.userprofile.position}}</td>
-                    <td><input name="members" type="checkbox" class="form-control" value="{{user.username}}"></td>
-                    <td><input type="radio" name="manager" class="form-control" value="{{user.username}}"></td>
+                    <td><input name="members" type="checkbox" 
+                    {% if user in team.members.all %}
+                        checked
+                    {% endif %}
+                         class="form-control" value="{{user.username}}"></td>
+                    <td><input 
+                    {% if user == team.program_manager %}
+                        checked
+                    {% endif %}
+                         type="radio" name="manager" class="form-control" value="{{user.username}}"></td>
                   </tr>
                   {% endfor %}                    
                 </tbody>
               </table>
             <div class="submit-section">
-                <input type="submit" class="btn btn-style-2" value="CREATE TEAM">
+                <input type="submit" class="btn btn-style-2" value="UPDATE TEAM">
             </div>
           </form>
         </div>

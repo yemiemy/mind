@@ -43,11 +43,6 @@ INSTALLED_APPS = [
     'pages',
     'accounts',
     'projects',
-
-
-    'django.contrib.sites',
-    'allauth',
-    'allauth.account',
 ]
 
 MIDDLEWARE = [
@@ -136,21 +131,8 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'mind/static')]
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
 
-#ALLAUTH SETTINGS
-LOGIN_REDIRECT_URL = '/accounts/dashboard'
-SITE_ID = 1
-
-AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
-)
-
-ACCOUNT_AUTHENTICATION_METHOD = "username_email"
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = "mandatory"
-ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
-ACCOUNT_FORMS = {
-'signup': 'accounts.forms.CustomSignupForm',
+#MESSAGES
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+messages.ERROR: 'danger'
 }
-
-ACCOUNT_ADAPTER = 'accounts.forms.UserAccountAdapter'

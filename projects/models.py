@@ -10,5 +10,16 @@ class Project(models.Model):
     startdate = models.DateTimeField(null=True)
     deadline = models.DateTimeField(blank=True, null=True)
     team = models.OneToOneField(Team, on_delete=models.CASCADE, null=True)
+    is_submitted = models.BooleanField(default=False, null=True)
+    is_accepted = models.BooleanField(default=False, null=True)
+    def __str__(self):
+        return self.title
+
+class Issue(models.Model):
+    project = models.ForeignKey(Project, related_name='issues', on_delete=models.CASCADE)
+    title = models.CharField(max_length=225, null=True)
+    message = models.TextField()
+    post_date = models.DateTimeField(auto_now=True)
+
     def __str__(self):
         return self.title

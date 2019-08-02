@@ -1,0 +1,18 @@
+<!-- Sidebar -->
+{% load static %}
+    <div class="border-right bg-custom-1" id="sidebar-wrapper">
+        <div class="sidebar-heading"><img width="240px" class="header-image" src="{% static 'img/logo-2.jpg' %}" alt="logo"></div>
+        <div class="list-group list-group-flush">
+            <a href="{% url 'dashboard' %}" class="list-group-item list-group-item-action bg-custom-1"><i class="fa fa-table"></i> Dashboard</a>
+            <a href="{% url 'notifications' %}"" class="list-group-item list-group-item-action bg-custom-1"><i class="fa fa-bell"></i> Notifications</a>
+            <a href="{% url 'create_project' %}" class="list-group-item list-group-item-action bg-custom-1"><i class="fa fa-plus"></i> Create Project</a>
+            <a href="{% url 'projects' %}" class="list-group-item list-group-item-action bg-custom-1"><i class="fa fa-eye"></i> Existing Projects</a>
+            <a href="{% url 'issues' %}" class="list-group-item list-group-item-action bg-custom-1"><i class="fa fa-eye"></i> Project Issues</a>
+            <a href="{% url 'leaderboard' %}" class="list-group-item list-group-item-action bg-custom-1"><i class="fa fa-clipboard"></i> View Leaderboard</a>
+            <a href="{% url 'create_team' %}" class="list-group-item list-group-item-action bg-custom-1"><i class="fa fa-gear"></i> Create team</a>
+            <a href="{% url 'manage_teams' %}" class="list-group-item list-group-item-action bg-custom-1"><i class="fa fa-gear"></i> Manage teams</a>
+          </div>
+      <div class="sidebar-logout">
+        <a href="" class="style-button-1">Log Out</a>
+      </div>
+    </div>

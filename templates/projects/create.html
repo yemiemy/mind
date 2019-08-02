@@ -1,97 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-  {% load static %}
+{% extends 'base.html' %}
 
-<head>
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>Create A New Project</title>
-  <link href=" {% static 'css/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-  <link href="{% static 'css/common.css' %}" rel="stylesheet">
-  <link rel="stylesheet" href="{% static 'css/font-awesome/css/font-awesome.min.css' %}">
-  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
-
-
-</head>
-
-<body>
-
-  <div class="d-flex" id="wrapper">
-
-    <!-- Sidebar -->
-    <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading"><img width="240px" class="header-image" src="{% static 'img/logo-2.jpg' %}" alt="logo"></div>
-      <div class="list-group list-group-flush">
-          <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fa fa-table"></i> Dashboard</a>
-          <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fa fa-bell"></i> Notifications</a>
-          <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fa fa-plus"></i> Create Project</a>
-          <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fa fa-eye"></i> Existing Projects</a>
-          <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fa fa-clipboard"></i> View Leaderboard</a>
-          <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fa fa-gear"></i> Manage teams</a>
-        </div>
-      <div class="sidebar-logout">
-        <a href="" class="style-button-1">Log Out</a>
-      </div>
-    </div>
-
-    <div id="page-content-wrapper">
-
-      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-          <div class="form-group col-md-8">
-              <button class="btn btn-primary" id="menu-toggle">menu</button>
-              <input type="search" class="form-control searchbox" placeholder="Search projects">
-            </div>
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-              <a class="nav-link" href="#"><i class="fa fa-user-circle"></i> Mike Adeleke<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"></a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-
-      <div class="container container-fluid">
-        <h2 class="mt-4 page-title">CREATE PROJECT</h2>
-        <form action="">
-            <h5>Project title</h5>
-            <input type="text" class="form-control field" name="projectname">
+{% block content %}
+  <div class="container container-fluid">
+        <h5 class="mt-4 page-title">CREATE PROJECT</h5>
+        <div class="card main-content">
+        <div class="card-body">
+        <form action="{% url 'create_project'%}" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+            <h6 class="font-weight-bold">Project title</h6>
+            <input type="text" class="form-control field" name="title">
             <br>
-            <h5>Project Description</h5>
-            <textarea name="projectdesc" id="" cols="30" rows="8" class="form-control field"></textarea>
-            <h5>Duration</h5>
-            <p class="lead">To be submitted before: <input type="date" class="form-control"></p>
+            <h6 class="font-weight-bold">Project Description</h6>
+            <textarea name="description" id="" cols="30" rows="8" class="form-control field"></textarea>
+            <br>
+            <h6 class="font-weight-bold">Project Point</h6>
+            <input type="number" class="form-control field" name="point">
+            <br>
+            <h6 class="font-weight-bold">Add attachment</h6>
+            <input type="file" name="attachment">
+            <br><br>
+            <h6 class="font-weight-bold">Duration</h6>
+            <div class="duration-section">
+                  <span>Start date and time: <input type="datetime-local" name="startdate" class="form-control"></span>
+                  <span>End date and time: <input type="datetime-local" name="deadline" class="form-control"></span>
+            </div>
             <div class="submit-section">
-                <input type="submit" class="btn btn-style-2" value="CREATE">
+                <input type="submit" class="btn-style-2" value="CREATE">
             </div>
           </form>
         </div>
-
-    </div>
-
-  </div>
-
-  <script src="{% static 'css/jquery/jquery.min.js' %}"></script>
-  <script src="{% static 'css/bootstrap/js/bootstrap.min.js' %}"></script>
-
-  <script>
-    $("#menu-toggle").click(function(e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
-    });
-  </script>
-
-</body>
-
-</html>
+        </div>
+        </div>
+{% endblock content %}

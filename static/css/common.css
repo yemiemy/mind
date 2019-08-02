@@ -2,10 +2,16 @@
 body {
   overflow-x: hidden;
   font-family: "Raleway", sans-serif, Arial, Helvetica, sans-serif;
+  background: #F6F6F6;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
+
+}
+
+td {
+  font-size: 13px;
 }
 
 #sidebar-wrapper {
@@ -17,8 +23,13 @@ h1, h2, h3, h4, h5, h6 {
   transition: margin .25s ease-out;
 }
 
+.bg-custom-1 {
+  background: #E6E6E6;
+}
+
 #sidebar-wrapper .sidebar-heading {
   padding: 0;
+  border-bottom: 0.4px solid #164782;
 }
 
 .header-image {
@@ -41,9 +52,16 @@ h1, h2, h3, h4, h5, h6 {
   display: none;
 }
 
+.nav-side {
+ display: flex;
+ justify-content: space-between;
+}
+
 
 nav.navbar.navbar-expand-lg.navbar-light.bg-light.border-bottom {
   height: 60px;
+  border: none;
+  background: white !important;
 }
 
 .form-control:focus{
@@ -53,6 +71,11 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light.border-bottom {
 
 .searchbox {
   margin-top: 5px;
+  width: %;
+}
+
+.search-place {
+  width: 330px;
 }
 
 .page-title {
@@ -75,6 +98,10 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light.border-bottom {
   height: 40px;
   margin-top: 20px;
   
+}
+
+.main-content {
+  border: none;
 }
 
 .sidebar-logout {
@@ -103,19 +130,19 @@ input[type="date"] {
 }
 
 .btn-style-1 {
-  color: white;
-  background: #164782;
+  color:  #164782;
+  background: white;
   border: 2px solid #164782;
   width: 160px;
-  color: white;
+  color: #164782;
   border-radius: 70px;
   font-weight: bold;
 }
 
 
 .btn-style-1:hover, .btn-style-2:focus, .btn-style-2:active {
-  color:#164782;
-  background: none;
+  color: white;
+  background: #164782;
   border: 2px solid #164782;
 
 }
@@ -127,10 +154,15 @@ input[type="date"] {
 
 .submit-section {
   display: flex;
-  justify-content: center;
-  margin-right: 20px;
+  justify-content: flex-end;
+  margin-right: 8%;
 }
 
+
+.duration-section {
+  display: flex;
+  margin: 30px auto;
+}
 
 tr {
 width: 100%;
@@ -139,8 +171,9 @@ table-layout: fixed;
 }
 
 table{
- height:300px;              // <-- Select the height of the table
- display: -moz-groupbox;    // Firefox Bad Effect
+ height:300px;             
+ display: -moz-groupbox;
+ 
 }
 tbody{
   overflow-y: scroll;      
@@ -157,7 +190,11 @@ tbody{
   display: flex;
   justify-content: flex-end;
   align-content: center;
-  margin-right: 8%;
+  margin-right: 5%;
+}
+
+.list-group-item {
+  border: none;
 }
 
 @media (max-width: 768px) {

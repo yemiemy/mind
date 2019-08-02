@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="jumbotron">
+        <div class="container">
+            
+            <p>{{team}}</p>
+            <br>
+            <p>Members:</p>
+            {% for member in team.members.all %}
+                <p>{{member.first_name}} {{member.first_name}}</p>
+            {% endfor %}
+            <br>
+            <p>Program Manager: {{team.program_manager.first_name}} {{team.program_manager.last_name}}</p>
+
+            <p>Points: {{team.totalPoints}}</p>
+            
+        </div>
+    </div>
+{% endblock content %}
+    

@@ -1,73 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-  {% load static %}
-
-<head>
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>Create A New Project</title>
-  <link href=" {% static 'css/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-  <link href="{% static 'css/common.css' %}" rel="stylesheet">
-  <link rel="stylesheet" href="{% static 'css/font-awesome/css/font-awesome.min.css' %}">
-  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+{% extends 'base.html' %}
 
 
-</head>
-
-<body>
-
-  <div class="d-flex" id="wrapper">
-
-    <!-- Sidebar -->
-    <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading"><img width="240px" class="header-image" src="img/logo-2.jpg" alt="logo"></div>
-      <div class="list-group list-group-flush">
-          <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fa fa-table"></i> Dashboard</a>
-          <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fa fa-bell"></i> Notifications</a>
-          <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fa fa-plus"></i> Create Project</a>
-          <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fa fa-eye"></i> Existing Projects</a>
-          <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fa fa-clipboard"></i> View Leaderboard</a>
-          <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fa fa-gear"></i> Manage teams</a>
-        </div>
-      <div class="sidebar-logout">
-        <a href="" class="style-button-1">Log Out</a>
-      </div>
-    </div>
-
-    <div id="page-content-wrapper">
-
-      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-          <div class="form-group col-md-8">
-              <button class="btn btn-primary" id="menu-toggle">menu</button>
-              <input type="search" class="form-control searchbox" placeholder="Search projects">
-            </div>
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-              <a class="nav-link" href="#"><i class="fa fa-user-circle"></i> Mike Adeleke<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"></a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-
-      <div class="container container-fluid">
+{% block content %}
+  <div class="container container-fluid">
         <h2 class="mt-4 page-title">ASSIGN PROJECT</h2>
         <div class="create-team">
-            <button class="btn-style-1">create new team</button>
+            <a href="{% url 'create_team' %}" class="btn-style-1">create new team</a>
           </div> 
-        (Project - A mini web crawler for our organization )  
+        (Project - {{project.title}} )  
         <br>
         <table class="table">
             <thead class="thead-white">
@@ -79,45 +19,32 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>DevOps gurus</td>
-                <td>Akindele</td>
-                <td>0</td>
-                <td><button class="btn-style-1">Assign</button></td>
+              
+              {% if teams %}
+              {% for team in teams %}
+                <tr>
+                <td>{{team.name}}</td>
+                <td>{{team.program_manager}}</td>
+                <td>{{team.totalPoints}}</td>
+                <td>
+                  <form action="{% url 'assign_project' project.id %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="team" value="{{team.id}}">
+                    <button type="submit" class="btn-style-1">Assign</button>
+                  </form>
+                </td>
               </tr>
-              <tr>
-                <td>Engineering best</td>
-                <td>Godfreyy W.</td>
-                <td>0</td>
-                <td><button class="btn-style-1">Assign</button></td>
+              {% endfor %}
 
-              </tr>
-              <tr>
-                <td>Cybersecurity</td>
-                <td>Bosun. A</td>
-                <td>0</td>
-                <td><button class="btn-style-1">Assign</button></td>
-
-              </tr>
+              {% else %}
+                <div class="container">
+                  <p>THERE ARE NO TEAMS YET</p>
+                </div>
+                
+              {% endif %}
+                
             </tbody>
           </table>
           
-        
         </div>
-    </div>
-
-  </div>
-
-  <script src="css/jquery/jquery.min.js"></script>
-  <script src="css/bootstrap/js/bootstrap.min.js"></script>
-
-  <script>
-    $("#menu-toggle").click(function(e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
-    });
-  </script>
-
-</body>
-
-</html>
+{% endblock content %}
